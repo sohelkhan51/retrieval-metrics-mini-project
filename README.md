@@ -80,3 +80,8 @@ SELECT post_id FROM posts ORDER BY embedding <=> $1 LIMIT 10;
 ```
 
 Wire each into `async keywordSearch(query)` and `async semanticSearch(query)` returning ranked `post_id` lists, then run your exact same metric code. The metrics do not change, only where the ranked lists come from.
+
+## Interpretation
+
+Semantic search performs better overall, achieving an MRR of 0.67 and Recall@10 of 1.00, compared with keyword search's MRR of 0.30 and Recall@10 of 0.60. Keyword search wins on "redis or memcached for caching," "what does ACID actually guarantee," and "sql or nosql for a new product," where exact technical terms help identify relevant results. Semantic search wins on the other seven queries, which involve symptoms, paraphrased questions, or concepts that benefit from understanding meaning rather than matching exact words. These include queries about Redis cache data, semantic search, database indexes, PostgreSQL schema changes, background jobs, database write performance, and Redis memory usage. A team might retain keyword search because it can perform better on exact technical terms where semantic search may rank relevant results lower. Combining both systems in a hybrid search approach could improve retrieval quality by using the strengths of each.
+
